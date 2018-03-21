@@ -14,9 +14,13 @@ long calibrate()
         printf("Run tests/wcet_calibration to generate the calibration file\n");
         exit(-1);
     }
-    fscanf(f, "%ld", &iter_milli);
-    fclose(f);
-    return iter_milli;
+    int e = fscanf(f, "%ld", &iter_milli);
+    if(e == 1) {
+        fclose(f);
+        return iter_milli;
+    } else {
+        return -1;
+    }
 }
 
 

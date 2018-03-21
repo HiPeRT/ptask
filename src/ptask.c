@@ -173,7 +173,12 @@ void ptask_init(int policy,
     if ((ptask_policy == SCHED_DEADLINE) && (ptask_global == PARTITIONED)) {
         FILE *f = fopen("/proc/sys/kernel/sched_rt_runtime_us", "r");
         int v = 0;
-        fscanf(f, "%d", &v);
+        int e = fscanf(f, "%d", &v);
+        if(e != 1) {
+            fprintf(stderr, "error reading /proc/sys/kernel/sched_rt_runtime_us\n");
+            exit(-1);
+        }
+        
         fclose(f);
         if (v != -1) {
             fprintf(stderr, "Cannot set PARTITIONED EDF scheduling, because admission control is enabled\n");
