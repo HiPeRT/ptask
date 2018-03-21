@@ -12,6 +12,7 @@ add_executable(task_create task_create.c)
 add_executable(task_aperiodic task_aperiodic.c)
 add_executable(wcet_calibration wcet_calibration.c)
 add_executable(test_edf test_edf.c calibrate.c)
+add_executable(simple_edf simple_edf.c calibrate.c)
 
 # Indicate that ptask library dependency
 target_link_libraries(time ptask rt)
@@ -23,6 +24,7 @@ target_link_libraries(task_create ptask Threads::Threads rt)
 target_link_libraries(task_aperiodic ptask Threads::Threads rt)
 target_link_libraries(wcet_calibration ptask Threads::Threads rt)
 target_link_libraries(test_edf ptask Threads::Threads rt)
+target_link_libraries(simple_edf ptask Threads::Threads rt)
 
 # Create tests from executables
 add_test(timeTest time)

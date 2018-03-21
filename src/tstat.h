@@ -28,6 +28,7 @@ tspec tstat_getexec();            /*< return exec time of curr. task */
 tspec ptask_get_wcet(int i);     /*< returns the task wcet          */
 tspec ptask_get_avg(int i);      /*< returns the task av. exec time */
 int ptask_get_numinstances(int i); /*< returns the number of inst.    */
+int ptask_get_deadline_misses(int i); /*< return the number of deadline missed */
 tspec ptask_get_total(int i);    /*< returns the total exec time    */
 
 #endif

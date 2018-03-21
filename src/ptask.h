@@ -13,6 +13,7 @@
 #include <linux/sched.h>
 #include <libdl.h>
 #include <signal.h>
+#include <tstat.h>
 
 /*--------------------------------------------------------------*/
 

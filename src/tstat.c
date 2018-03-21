@@ -7,6 +7,7 @@ struct wcet_measure {
     tspec wcet;
     tspec first;
     int num_instances;
+    int miss;
 };
 
 static struct wcet_measure measures[MAX_TASKS];
@@ -20,6 +21,8 @@ void tstat_init(int i)
 
 void tstat_record(int i)
 {
+    int miss = ptask_deadline_miss();
+
     tspec now;
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &now);
     tspec delta = tspec_sub(&now, &measures[i].last);
@@ -27,6 +30,7 @@ void tstat_record(int i)
 	measures[i].wcet = delta;
     measures[i].last = now;
     measures[i].num_instances++;
+    measures[i].miss += miss;
 }
 
 tspec ptask_get_wcet(int i)
@@ -49,11 +53,15 @@ int ptask_get_numinstances(int i)
     return measures[i].num_instances;
 }
 
+int ptask_get_deadline_misses(int i)
+{
+    return measures[i].miss;
+}
+
 tspec ptask_get_total(int i)
 {
     return tspec_sub(&measures[i].last, &measures[i].first);
 }
-
 
 tspec tstat_getexec() {
     tspec now;
