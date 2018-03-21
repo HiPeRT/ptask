@@ -41,7 +41,7 @@ int main()
     tspec wcet = ptask_get_wcet (t_id);
     tspec tot  = ptask_get_total(t_id);
     int exec = ptask_get_numinstances   (t_id);
-    int miss = ptask_get_deadline_misses(t_id);
+    int miss = ptask_get_deadline_missed(t_id);
     printf("wcet: %ld us\nawg: %ld us\ntot: %ld us\nexecuted: %d\nmiss: %d\n", 
         tspec_to(&wcet, MICRO), tspec_to(&awg,  MICRO), tspec_to(&tot,  MICRO), exec, miss);
     return 0;

@@ -53,7 +53,7 @@ int ptask_get_numinstances(int i)
     return measures[i].num_instances;
 }
 
-int ptask_get_deadline_misses(int i)
+int ptask_get_deadline_missed(int i)
 {
     return measures[i].miss;
 }
