@@ -27,7 +27,7 @@ void tstat_record(int i)
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &now);
     tspec delta = tspec_sub(&now, &measures[i].last);
     if (tspec_cmp(&delta, &measures[i].wcet) > 0) 
-	measures[i].wcet = delta;
+	    measures[i].wcet = delta;
     measures[i].last = now;
     measures[i].num_instances++;
     measures[i].miss += miss;
